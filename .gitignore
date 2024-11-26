@@ -1,3 +1,4 @@
 MyList/build/
 *.out
 *.gch
+*.user
