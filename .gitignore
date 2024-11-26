@@ -1,4 +1,4 @@
 MyList/build/
-*.out
-*.gch
-*.user
+MyList/*.out
+MyList/*.gch
+MyList/*.user
