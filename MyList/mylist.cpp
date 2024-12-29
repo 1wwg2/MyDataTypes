@@ -73,16 +73,71 @@ void MyList::Clear() {
     }    
 }
 
-//bool MyList::Find(const int& value) const{}
+/*bool MyList::Find(const int& value) const {
+    if(Head == nullptr) {
+        std::cout << "List is empty" << std::endl;
+    } else {
+        Node* current = Head;
+        while(current != nullptr) {
+            
+    }
 
-//bool MyList::IsEmpty() const{}
-//size_t MyList::Size() const{}
+}*/
+
+bool MyList::IsEmpty() const {
+    return Head == nullptr;
+}
+
+size_t MyList::Size() const {
+    int size = 0;
+    if(!IsEmpty()) {
+        Node* current = Head;
+        while(current != nullptr) {
+            ++size;
+            current = current->next;
+        }
+    }
+        return size;
+}
 
 //MyList& MyList::operator=(const MyList& other){}
 //MyList& MyList::operator=(MyList&& other) noexcept{}
 
-//int& MyList::operator[](size_t index){}
-//const int& MyList::operator[](size_t index) const{}
+int& MyList::operator[](int index) { 
+        if(IsEmpty()) {
+            throw std::out_of_range("List is empty");
+        }
+        if(Size() < index && index < 0) {
+           throw std::out_of_range("Incorrect index");
+        }
+        else {
+            Node* current = Head;
+            int i = 0;
+               while(i != index) {
+                current = current->next;
+                ++i;
+           }
+       return current->value;
+    }
+}
+
+const int& MyList::operator[](int index) const {
+        if(IsEmpty()) {
+            throw std::out_of_range("List is empty");
+        }
+        if(Size() < index && index < 0) {
+           throw std::out_of_range("Incorrect index");
+        }
+        else {
+            Node* current = Head;
+            int i = 0;
+               while(i != index) {
+                current = current->next;
+                ++i;
+           }
+       return current->value;
+    }
+}
 
 void MyList::Show() const {
     if(Head == nullptr) {

@@ -36,8 +36,8 @@ public:
     MyList& operator=(const MyList& other);
     MyList& operator=(MyList&& other) noexcept;
 
-    int& operator[](size_t index);
-    const int& operator[](size_t index) const;
+    int& operator[](int index);
+    const int& operator[](int index) const;
 
     void Show() const;
 };
