@@ -24,7 +24,7 @@ public:
     
     void PopBack();
     void PopFront();
-
+    void InsertNode(int value, int position);
     void Remove(const int& value);
     void Clear();
     
