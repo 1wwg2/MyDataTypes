@@ -46,6 +46,7 @@ void MyList::InsertNode(int value, int position) {
         current->next->next = temp;    
     }
 }
+
 void MyList::PopBack() {
     if(Head == nullptr) { 
         std::cout << "List empty" << std::endl;
@@ -106,16 +107,21 @@ void MyList::Clear() {
     }    
 }
 
-/*bool MyList::Find(const int& value) const {
+bool MyList::Find(const int& value) const {
   if(Head == nullptr) {
   std::cout << "List is empty" << std::endl;
+  return false;
   } else {
   Node* current = Head;
-  while(current != nullptr) {
-
-  }
-
-  }*/
+    while(current != nullptr) {
+        if(current->value == value) { 
+           return true;
+        } 
+        current = current->next;
+    }
+        return false;
+    }
+}
 
 bool MyList::IsEmpty() const {
     return Head == nullptr;
