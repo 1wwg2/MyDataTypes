@@ -5,9 +5,12 @@ int main()
 {
 try {
     MyList list;
+    list.PushBack(1);
     std::cout << std::endl;
     list.Show();
-    std::cout <<  list.Find(3) << std::endl;;
+    list.Remove(3);
+    list.Show();
+    list.PushBack(2);
     list.Show();
 } catch (const std::out_of_range& e) {
     std::cerr << e.what() << std::endl;

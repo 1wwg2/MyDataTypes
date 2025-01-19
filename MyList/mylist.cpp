@@ -70,25 +70,20 @@ void MyList::PopFront() {
         delete temp;
         temp = nullptr;        
     }
-}
+} 
+
 void MyList::Remove(const int& value) { 
-    if(Head == nullptr) {
+    if(Head == nullptr) { 
         std::cout << "List empty" << std::endl;
         return;
-     } else if(Head->next == nullptr) {
-        delete Head;
-       Head = nullptr; 
-    } else {
-        bool isInList = false;
-        Node* current = Head;
-        while(current != nullptr) {
-
-        current = current->next;
-    }
-        if(!isInList) {
+    } else if(Head->value == value) {
+            Node* temp = Head;
+            Head = Head->next;
+            delete temp;
+            return;
+        } else { 
             std::cout << "Value is not in List" << std::endl;
         }
-    }
 }
 
 void MyList::Clear() {
@@ -102,7 +97,7 @@ void MyList::Clear() {
             current = current->next;
             delete temp;
         }
-        current = nullptr;
+        
         Head = nullptr;
     }    
 }
@@ -110,7 +105,6 @@ void MyList::Clear() {
 bool MyList::Find(const int& value) const {
   if(Head == nullptr) {
   std::cout << "List is empty" << std::endl;
-  return false;
   } else {
   Node* current = Head;
     while(current != nullptr) {
