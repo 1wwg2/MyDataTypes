@@ -1,7 +1,23 @@
 #include "mylist.h"
 
 MyList::MyList() : Head(nullptr) {}
-//MyList::MyList(const MyList& other){}
+MyList::MyList(const MyList& other) { 
+    if(other.Head == nullptr) {
+        std::cout << "List is empty" << std::endl;
+        Head = nullptr;
+        return;
+    } else {
+          Head = new Node {other.Head->value, nullptr};
+          Node* currentOther = other.Head->next;
+          Node* current = Head;
+          
+        while(currentOther != nullptr) {
+            current->next = new Node {currentOther->value, nullptr};
+            current = current->next;
+            currentOther = currentOther->next;
+        }
+    }
+}
 //MyList::MyList(MyList&& other) noexcept{}
 
 MyList::~MyList(){}
