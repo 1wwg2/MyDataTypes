@@ -1,6 +1,7 @@
 #include "mylist.h"
 
 MyList::MyList() : Head(nullptr) {}
+
 MyList::MyList(const MyList& other) { 
     if(other.Head == nullptr) {
         std::cout << "List is empty" << std::endl;
@@ -18,9 +19,14 @@ MyList::MyList(const MyList& other) {
         }
     }
 }
-//MyList::MyList(MyList&& other) noexcept{}
+MyList::MyList(MyList&& other) noexcept { 
+    Head = other.Head;
+    other.Head = nullptr;
+}
 
-MyList::~MyList(){}
+MyList::~MyList() { 
+    Clear(); 
+}
 
 void MyList::PushBack(const int& value) {
     if(Head == nullptr) {
@@ -104,7 +110,6 @@ void MyList::Remove(const int& value) {
 
 void MyList::Clear() {
     if(Head == nullptr) {
-        std::cout << "List empty" << std::endl;
     } else {
         Node* current = Head;
         while(current != nullptr)
@@ -170,7 +175,15 @@ MyList& MyList::operator=(const MyList& other) {
     }
     return *this;
 }
-//MyList& MyList::operator=(MyList&& other) noexcept{}
+
+MyList& MyList::operator=(MyList&& other) noexcept {
+    if(this != &other) {
+        Clear();
+        Head = other.Head;
+        other.Head = nullptr;
+    }
+   return *this; 
+}
 
 int& MyList::operator[](int index) { 
     if(IsEmpty()) {

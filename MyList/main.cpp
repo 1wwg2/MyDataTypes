@@ -8,7 +8,8 @@ int main()
     list.PushBack(2);
     list.PushBack(3);
     list.Show();
-    MyList list1 = list;
+    MyList list1 ((list));
     list1.Show();
+    list.Show();
     return 0;
 }
