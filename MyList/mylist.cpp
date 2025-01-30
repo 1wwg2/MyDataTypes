@@ -149,7 +149,27 @@ size_t MyList::Size() const {
     return size;
 }
 
-//MyList& MyList::operator=(const MyList& other){}
+MyList& MyList::operator=(const MyList& other) {
+    if(&other != this) {
+        Clear(); 
+    
+    if(other.Head == nullptr) {
+        std::cout << "List is empty" << std::endl;
+        Head = nullptr;
+    } else {
+          Head = new Node {other.Head->value, nullptr};
+          Node* currentOther = other.Head->next;
+          Node* current = Head;
+          
+        while(currentOther != nullptr) {
+            current->next = new Node {currentOther->value, nullptr};
+            current = current->next;
+            currentOther = currentOther->next;
+            }
+        }    
+    }
+    return *this;
+}
 //MyList& MyList::operator=(MyList&& other) noexcept{}
 
 int& MyList::operator[](int index) { 
