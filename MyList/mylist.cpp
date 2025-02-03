@@ -94,6 +94,26 @@ void MyList::PopFront() {
     }
 } 
 
+void MyList::Reverse() {
+   if(Head == nullptr) {
+       std::cout << "Nothing to reverse" << std::endl;
+       return;
+   } else if(Head->next == nullptr) { 
+       std::cout << "List has only 1 element" << std::endl;
+   } else {
+        Node* prev = nullptr;
+        Node* current = Head;
+        Node* next = Head->next; 
+       while(current != nullptr) {
+           prev = next;
+           prev->next = current;
+           current->next = next;
+           current = current->next;
+       }
+       
+   } 
+}
+
 void MyList::Remove(const int& value) { 
     if(Head == nullptr) { 
         std::cout << "List empty" << std::endl;
