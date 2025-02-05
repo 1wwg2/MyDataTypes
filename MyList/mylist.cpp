@@ -94,13 +94,6 @@ void MyList::PopFront() {
     }
 } 
 
-//   HEAD -> [1] -> [2] -> [3] -> nullptr
-//            ^      ^      ^   
-//            |      |      |   
-//            PREV                     
-//1) 
-// 1.1 
-//      
 void MyList::Reverse() {
    if(Head == nullptr) {
        std::cout << "Nothing to reverse" << std::endl;
@@ -113,8 +106,14 @@ void MyList::Reverse() {
         Node* next = Head->next; 
        while(current != nullptr) {
            current->next = prev;
-           
+           prev = current;
+           current = next;
+           if(next->next == nullptr)
+           next = next->next; 
+           else next = nullptr;
+
        }
+       Head = prev;
        
    } 
 }
