@@ -1,4 +1,5 @@
 #include "mylist.h"
+#include <exception>
 
 MyList::MyList() : Head(nullptr) {}
 
@@ -98,23 +99,17 @@ void MyList::Reverse() {
    if(Head == nullptr) {
        std::cout << "Nothing to reverse" << std::endl;
        return;
-   } else if(Head->next == nullptr) { 
-       std::cout << "List has only 1 element" << std::endl;
    } else {
         Node* prev = nullptr;
         Node* current = Head;
-        Node* next = Head->next; 
+        Node* next = nullptr; 
        while(current != nullptr) {
+           next = current->next;
            current->next = prev;
            prev = current;
            current = next;
-           if(next->next == nullptr)
-           next = next->next; 
-           else next = nullptr;
-
        }
        Head = prev;
-       
    } 
 }
 
@@ -122,14 +117,25 @@ void MyList::Remove(const int& value) {
     if(Head == nullptr) { 
         std::cout << "List empty" << std::endl;
         return;
-    } else if(Head->value == value) {
-            Node* temp = Head;
-            Head = Head->next;
-            delete temp;
-            return;
-        } else { 
-            std::cout << "Value is not in List" << std::endl;
+    } else {
+        if(Head->value == value) {
+            PopFront();
+            return; 
         }
+        Node* prev = nullptr;
+        Node* current = Head;
+        while(current != nullptr) {
+            if(current->value == value) {
+                Node* temp = current;
+                prev->next = current->next;
+                delete temp;
+                return; 
+            }
+            prev = current;
+            current = current->next;
+        }
+        std::cout << "Value not found" << std::endl;
+    }
 }
 
 void MyList::Clear() {
