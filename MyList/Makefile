@@ -1123,7 +1123,7 @@ compiler_clean:
 main.o: main.cpp mylist.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
-mylist.o: mylist.cpp mylist.h
+mylist.o: mylist.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mylist.o mylist.cpp
 
 ####### Install

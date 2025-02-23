@@ -1,7 +1,8 @@
-#include "mylist.h"
 #include <exception>
 
-MyList::MyList() : Head(nullptr) {}
+/*
+ *
+ * MyList::MyList() : Head(nullptr) {}
 
 MyList::MyList(const MyList& other) { 
     if(other.Head == nullptr) {
@@ -222,7 +223,7 @@ bool MyList::Find(const int& value) const {
     }
 }
 
-/*void MyList::MergeList(MyList& otherListHead) {
+/////////void MyList::MergeList(MyList& otherListHead) {
     Node* current = Head;
     Node* othercurrent = otherListHead.GetHead();
     
@@ -241,7 +242,7 @@ bool MyList::Find(const int& value) const {
 
     Head = MergeListHead;
            
-}*/ 
+} 
 
 bool MyList::IsEmpty() const {
     return Head == nullptr;
@@ -339,3 +340,4 @@ void MyList::Show() const {
         std::cout << std::endl;
     }
 }
+*/
