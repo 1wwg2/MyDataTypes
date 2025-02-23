@@ -70,6 +70,9 @@ void MyList::InsertNode(int value, int position) {
     }
 }
 
+MyList::Node* MyList::GetHead() const {
+   return Head;
+} 
 void MyList::PopBack() {
     if(Head == nullptr) { 
         std::cout << "List empty" << std::endl;
@@ -167,6 +170,27 @@ bool MyList::Find(const int& value) const {
         return false;
     }
 }
+
+/*void MyList::MergeList(MyList& otherListHead) {
+    Node* current = Head;
+    Node* othercurrent = otherListHead.GetHead();
+    
+    Node* MergeListHead = nullptr;
+    Node* CurrentMergeListHead = MergeListHead;
+    while(current != nullptr && othercurrent != nullptr)
+    {
+        if(current->value < othercurrent->value)
+        {
+            CurrentMergeListHead = new Node{current->value, nullptr};
+            CurrentMergeListHead = CurrentMergeListHead->next; 
+        }
+        current = current->next;
+        othercurrent = othercurrent->next;
+    }
+
+    Head = MergeListHead;
+           
+}*/ 
 
 bool MyList::IsEmpty() const {
     return Head == nullptr;

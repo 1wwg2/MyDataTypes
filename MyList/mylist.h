@@ -21,7 +21,7 @@ public:
     
     void PushBack(const int& value);
     void PushFront(const int& value);
-    
+    Node* GetHead() const; 
     void PopBack();
     void PopFront();
     void Reverse();
@@ -30,7 +30,7 @@ public:
     void Clear();
     
     bool Find(const int& value) const;
-    
+    void MergeList(MyList& otherListHead); 
     bool IsEmpty() const;
     size_t Size() const;
 
