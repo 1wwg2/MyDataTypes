@@ -26,6 +26,7 @@ public:
     void PopFront();
     void Reverse();
     void InsertNode(int value, int position);
+    void InsertNode1(int value, int position);
     void Remove(const int& value);
     void Clear();
     

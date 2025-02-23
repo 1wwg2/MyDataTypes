@@ -52,6 +52,57 @@ void MyList::PushFront(const int& value)
     } 
 }
 
+
+
+void MyList::InsertNode1(int value, int position)
+{
+    Node* current = Head;
+    int current_pos = 0;
+
+    if(Head == nullptr)
+    {
+        std::cout << "List is empty, push to first position";
+        Head = new Node {value, nullptr}; 
+        return;
+    }
+    else if(position > Size())
+    {
+        std::cout << "Position > Size(). Error" << std::endl;
+        return;
+    }
+    else if(position == 0)
+    {
+        Node* temp = Head;
+        Head = new Node {value, nullptr};
+        Head->next = temp;
+    }
+    else if(position == Size())
+    {
+        while(current->next != nullptr)
+        {
+            current = current->next;
+        }
+        current->next = new Node{value, nullptr};
+    }
+    else 
+    {
+        while (current != nullptr)
+        {
+            if(current_pos + 1 == position)
+            {
+                Node* temp = current->next;
+                current->next = new Node {value, nullptr};
+                current->next->next = temp;
+                return;
+            }
+            current = current->next;
+            current_pos++;
+        }
+            std::cout << "Position not found" << std::endl;
+    }
+} 
+
+
 void MyList::InsertNode(int value, int position) {
     if(Head == nullptr) {
         Head = new Node {value, nullptr};
