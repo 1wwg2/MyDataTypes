@@ -7,13 +7,14 @@ private:
 public:
     MyUniquePtr();
     MyUniquePtr(const T& value);
-    MyUniquePtr(const MyUniquePtr& other);
-    MyUniquePtr(MyUniquePtr&& other);
+    MyUniquePtr(const MyUniquePtr& other) = delete;
+    MyUniquePtr(MyUniquePtr&& other) noexcept;
 
-    void operator=(const MyUniquePtr& other);
-    void operator=(MyUniquePtr&& other);
+    void operator=(const MyUniquePtr& other) = delete;
+    MyUniquePtr& operator=(MyUniquePtr&& other) noexcept;
 
     ~MyUniquePtr();
+    T* get() const;
 
 };
 
@@ -28,22 +29,27 @@ MyUniquePtr<T>::MyUniquePtr(const T& value)
     ptr = new T(value);
     std::cout << "RAII started" << std::endl;
 }
-template <typename T>
-MyUniquePtr<T>::MyUniquePtr(const MyUniquePtr& other)
-{
 
-}
 template <typename T>
-MyUniquePtr<T>::MyUniquePtr(MyUniquePtr&& other)
+MyUniquePtr<T>::MyUniquePtr(MyUniquePtr&& other) noexcept
 {
+    if(this != &other)
+    {
+        this->ptr = other.ptr;
+        other.ptr = nullptr;        
+    }
 }
+
 template <typename T>
-void MyUniquePtr<T>::operator=(const MyUniquePtr& other)
+MyUniquePtr<T>& MyUniquePtr<T>::operator=(MyUniquePtr&& other) noexcept
 {
-}
-template <typename T>
-void MyUniquePtr<T>::operator=(MyUniquePtr&& other)
-{
+    if(this != &other)
+    {
+        this->ptr = other.ptr;
+        other.ptr = nullptr;        
+    }
+
+    return *this;
 }
 template <typename T>
 MyUniquePtr<T>::~MyUniquePtr()
@@ -53,3 +59,15 @@ MyUniquePtr<T>::~MyUniquePtr()
     std::cout << "RAII end" << std::endl;
 }
 
+template <typename T>
+T* MyUniquePtr<T>::get() const
+{
+    if(ptr == nullptr)
+    {
+        return nullptr;
+    }
+    else
+    {
+        return ptr;
+    }
+}
