@@ -1,3 +1,6 @@
+#ifndef MY_VECTOR
+#define MY_VECTOR
+
 #include <iostream>
 
 template<typename T>
@@ -9,7 +12,7 @@ private:
     size_t capacity;
 public:
     MyVector();
-    MyVector(const int value,  const int _size);
+    MyVector(const T& value,  const int _size);
     MyVector(const MyVector& other);
     MyVector(MyVector&& other);
 
@@ -17,13 +20,13 @@ public:
     MyVector& operator=(MyVector&& other);
 
     void PushBack(const T& value);
-    void PushFront();
+    void PushFront(const T& value);
     void Swap();
     void Erase();
     void Insert();
 
     size_t Size();
-    size_t At(size_t index);
+    T& At(size_t index);
 
     const T& operator[](size_t index) const;
     T& operator[](size_t index);
@@ -39,14 +42,16 @@ MyVector<T>::MyVector()
 }
 
 template<typename T>
-MyVector<T>::MyVector(const int value, const int _size)
+MyVector<T>::MyVector(const T& value, const int _size)
 {
+    size = 0;
     capacity = _size * 2;
     dynamic_vec_array = new T[capacity]; 
     for(int i = 0; i < _size; ++i)
     {
         dynamic_vec_array[i] = value;
     }
+    size = _size;
 }
 
 template<typename T>
@@ -100,22 +105,62 @@ void MyVector<T>::PushBack(const T& value)
         T* new_arr = new T[capacity];
         for(int i = 0; i < size; ++i)
         {
-           new_arr = dynamic_vec_array[i]; 
+           new_arr[i] = dynamic_vec_array[i]; 
         }
-        new_arr[size] = value;
+        delete [] dynamic_vec_array;
+        dynamic_vec_array = new_arr;
+        dynamic_vec_array[size] = value;
+        ++size;
+    }
+}
+template<typename T>
+void MyVector<T>::PushFront(const T& value)
+{
+    if(size == 0)
+    {
+        if(dynamic_vec_array)
+            delete [] dynamic_vec_array;
+        
+        size = 1;
+        capacity = 2;
+        dynamic_vec_array = new T[capacity];
+        dynamic_vec_array[0] = value;
+    } 
+    else if (size < capacity)
+    {
+        std::cout << "www" << std::endl;
+        for(int i = 0; i < size; ++i)
+        {
+            dynamic_vec_array[i + 1] = dynamic_vec_array[i];
+        }
+
+        dynamic_vec_array[0] = value;
+        ++size;
+    }
+    else 
+    {
+        capacity = capacity * 2;
+        T* new_arr = new T[capacity];
+
+        for(int i = 0; i < size; ++i)
+        {
+            new_arr[i] = dynamic_vec_array[i];
+        }
+        for(int i = 0; i < size; ++i)
+        {
+            new_arr[i + 1] = new_arr[i];
+        };
+        new_arr[0] = value;
         ++size;
         delete [] dynamic_vec_array;
         dynamic_vec_array = new_arr;
     }
 }
-template<typename T>
-void MyVector<T>::PushFront()
-{
-}
 
 template<typename T>
 void MyVector<T>::Swap()
 {
+
 }
 template<typename T>
 void MyVector<T>::Erase()
@@ -124,6 +169,7 @@ void MyVector<T>::Erase()
 template<typename T>
 void MyVector<T>::Insert()
 {
+    
 }
 template<typename T>
 size_t MyVector<T>::Size()
@@ -132,7 +178,7 @@ size_t MyVector<T>::Size()
 }
 
 template<typename T>
-size_t MyVector<T>::At(size_t index)
+T& MyVector<T>::At(size_t index)
 {
     return dynamic_vec_array[index];
 }
@@ -149,3 +195,4 @@ T& MyVector<T>::operator[](size_t index)
     return dynamic_vec_array[index];
 }
 
+#endif // MY_VECTOR

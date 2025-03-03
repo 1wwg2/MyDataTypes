@@ -3,17 +3,18 @@
 
 int main()
 {
+    //MyVector<const char*> vec("a", 7);
     MyVector<int> vec;
-    vec.PushBack(1);
-    vec.PushBack(2);
-    vec.PushBack(3);
-    vec.PushBack(7);
-    vec.PushBack(1);
-    std::cout << vec.Size() << std::endl;
-    
+    vec.PushFront(2);
+    vec.PushFront(2);
+    vec.PushFront(2);
+    vec.PushFront(2);
+
     for(int i = 0; i < vec.Size(); ++i)
     {
         std::cout << vec.At(i) << " ";
     }
+    std::cout << std::endl;
+
  
 }
