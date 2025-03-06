@@ -3,3 +3,4 @@ MyList/*.out
 MyList/*.gch
 MyList/*.user
 MyList/Makefile
+Makefile
