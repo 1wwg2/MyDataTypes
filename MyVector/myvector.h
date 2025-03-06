@@ -25,6 +25,7 @@ public:
     void Swap(MyVector& other);
     void PopBack();
     void PopFront();
+    void Clear();
 
     size_t Size() const;
     T& At(size_t index);
@@ -229,6 +230,13 @@ void MyVector<T>::PopFront()
       --size;
    }
 }
+
+template<typename T>
+void MyVector<T>::Clear()
+{
+    size = 0;
+}
+
 template<typename T>
 size_t MyVector<T>::Size() const
 {
