@@ -8,6 +8,8 @@ int main()
     list.PushBack(3);
     list.PushBack(4);
     list.Show();
+    list.Reverse();
+    list.Show();
     return 0;
 }
 
