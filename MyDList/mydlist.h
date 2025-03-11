@@ -36,7 +36,7 @@ public:
     const T& Back() const;
 
     void Remove(const T& value);
-    bool Find(const T& value);
+    bool Find(const T& value) const;
 
     void Reverse();
     void Clear();
@@ -44,6 +44,7 @@ public:
 
     void Show() const;
     size_t Size() const;
+    Node* GetHead() const; 
 };
 template <typename T> 
 MyDList<T>::MyDList()
@@ -88,7 +89,7 @@ MyDList<T>::MyDList(MyDList&& other) noexcept
 template <typename T> 
 MyDList<T>& MyDList<T>::operator=(const MyDList& other)
 {
-    if(other != &this)
+    if(&other != this)
     {
         Clear();
 
@@ -104,6 +105,7 @@ MyDList<T>& MyDList<T>::operator=(const MyDList& other)
         }
         size = other.size;   
     }
+    return *this;
 }
 template <typename T> 
 MyDList<T>& MyDList<T>::operator=(MyDList&& other) noexcept
@@ -118,6 +120,7 @@ MyDList<T>& MyDList<T>::operator=(MyDList&& other) noexcept
         other.tail = 0;
         other.head = 0;
    }
+   return *this;
 }
 template <typename T> 
 MyDList<T>::~MyDList()
@@ -268,7 +271,7 @@ void MyDList<T>::Remove(const T& value)
     }
 }
 template <typename T> 
-bool MyDList<T>::Find(const T& value)
+bool MyDList<T>::Find(const T& value) const
 {
     if(size != 0)
     {
@@ -352,4 +355,11 @@ template <typename T>
 size_t MyDList<T>::Size() const
 {
     return size;
+}
+
+
+template <typename T> 
+typename MyDList<T>::Node* MyDList<T>::GetHead() const 
+{
+    return head;
 }

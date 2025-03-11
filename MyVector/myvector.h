@@ -13,6 +13,7 @@ private:
     size_t capacity;
 public:
     MyVector();
+    MyVector(size_t _size); 
     MyVector(const T& value,  const int _size);
     MyVector(const MyVector& other);
     MyVector(MyVector&& other) noexcept;
@@ -41,6 +42,14 @@ MyVector<T>::MyVector()
     dynamic_vec_array = nullptr;
     size = 0;
     capacity = 0;
+}
+
+
+template<typename T>
+MyVector<T>::MyVector(size_t _size) {
+    dynamic_vec_array = new T[_size]();  // Выделяем память
+    size = _size;
+    capacity = _size;
 }
 
 template<typename T>
