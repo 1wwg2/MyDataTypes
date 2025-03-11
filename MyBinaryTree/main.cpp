@@ -18,6 +18,6 @@ void Show(const MyBinaryTree<T>& tree)
 int main()
 {
     MyBinaryTree<int> tree = {7, 5, 1, 0, 6, 4};
-    tree.DoForAllElements(ShowValue<int>);
+    std::cout << *tree.Find(5);
 }
 

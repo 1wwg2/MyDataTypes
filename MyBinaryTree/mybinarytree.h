@@ -1,3 +1,4 @@
+#include <exception>
 #include <iostream>
 #include <initializer_list>
 
@@ -21,6 +22,7 @@ private:
     Node* FindMinimun(Node* node);
     size_t Size(const Node* node) const;
     void CopyTree(Node*&  tree1, const Node*& tree2);
+    const T* FindRecursive(Node* root, const T& value) const;
 public:
     MyBinaryTree() = default;
     MyBinaryTree(const MyBinaryTree& other);
@@ -74,6 +76,46 @@ void MyBinaryTree<T>::RemoveSubTree(Node* node)
 template<typename T>
 typename MyBinaryTree<T>::Node* MyBinaryTree<T>::Delete(Node* node, const T value)
 {
+    if(node == nullptr)
+    {
+        return nullptr;
+    }
+    if(value < node->left)
+    {
+        node->left = Delete(node->left, value);
+    }
+    else if(value > node->right)
+    {
+        node->right = Delete(node->right, value);
+    }
+    else
+    {
+        if(node->right == nullptr && node->left == nullptr)
+        {
+            delete node;
+            node = nullptr;
+        } 
+        else if(node->left == nullptr)
+        {
+            Node* temp = node->right;
+            delete node;
+            node = temp;
+        }
+        else if(node->right == nullptr)
+        {
+            Node* temp = node->left;
+            delete node;
+            node = temp;
+        }
+        else
+        {
+            Node* temp = FindMinimun(node);
+            node->value = temp->value;
+            node->right = Delete(node->right, temp->value);
+        }
+    }
+
+    return node;
 }
 template<typename T>
 typename MyBinaryTree<T>::Node* MyBinaryTree<T>::FindMinimun(Node* node)
@@ -206,11 +248,49 @@ void MyBinaryTree<T>::Clear()
 template<typename T>
 void MyBinaryTree<T>::Delete()
 {
+    Root = Delete(Root);
 }
 template<typename T>
 const T* MyBinaryTree<T>::Find(const T& value) const
-{
+{  
+   /* Node* current = Root; 
+    while(current != nullptr)
+    {
+        if(value < current->value)
+        {
+            current = current->left;
+        }
+        else if(value > current->value)
+        {
+            current = current->right;
+        }
+        else
+        {
+            return &current->value;
+        }
+        return nullptr; 
+    }
+    */
+     return FindRecursive(Root, value);
+}
 
+
+template<typename T>
+const T* MyBinaryTree<T>::FindRecursive(Node* root, const T& value) const
+{
+    if(value == root->value)
+    {
+        return &root->value;
+    }
+    else if (value < root->value)
+    {
+        return FindRecursive(root->left, value);
+    }
+    else if(value > root->value)
+    {
+        return FindRecursive(root->right, value);
+    }
+    return nullptr;
 }
 template<typename T>
 bool MyBinaryTree<T>::IsEmpty()
