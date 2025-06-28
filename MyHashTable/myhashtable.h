@@ -1,4 +1,3 @@
-
 #ifndef MYHASHTABLE_H
 #define MYHASHTABLE_H
 
@@ -7,8 +6,7 @@
 #include <iostream>
 
 template <typename Key, typename Value>
-class MyHashTable {
-private:
+class MyHashTable { private:
     struct HashNode {
         Key key;
         Value value;
@@ -31,16 +29,19 @@ public:
         buckets[index].PushBack(node);
     }
 
-    void print() const {
-        for (size_t i = 0; i < capacity; i++) {
-            std::cout << "Bucket " << i << ": ";
-            auto temp = buckets[i].GetHead();
-            while (temp) {
-                temp = temp->next;
-            }
-            std::cout << "\n";
+
+void print() const {
+    for (size_t i = 0; i < capacity; i++) {
+        std::cout << "Bucket " << i << ": ";
+        auto temp = buckets[i].GetHead();
+        while (temp) {
+            std::cout << "(" << temp->value.key << ", " << temp->value.value << ") ";  
+            temp = temp->next;
         }
+        std::cout << "\n";
     }
+}
+
 };
 
 #endif // MYHASHTABLE_H
