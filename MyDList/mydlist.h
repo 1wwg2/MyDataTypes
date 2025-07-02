@@ -40,6 +40,7 @@ public:
 
     void Reverse();
     void Clear();
+    void Insert(const T& value, int position);
     bool isEmpty() const;
 
     void Show() const;
@@ -234,6 +235,43 @@ const T& MyDList<T>::Back() const
         return tail->value;
     }
 }
+
+template <typename T>
+void MyDList<T>::Insert(const T& value, int position)
+{
+   int curr_size = 0;
+   if(size == 0)
+   {
+       PushBack(value);
+   } 
+   else if(size <= position)
+   {
+      PushBack(value); 
+   }
+   else if(position <= 0)
+   {
+       PushFront(value);
+   }
+   else
+   {
+        Node* curr = head;
+        while(curr_size != (position - 1))
+        {
+            curr = curr->next;
+            ++curr_size;
+        }
+
+       Node* temp = new Node{value, nullptr, nullptr};
+       Node* next = curr->next;
+       temp->prev = curr;
+       curr->next = temp;
+       temp->next = next;
+       next->prev = temp; 
+            
+   }
+   ++size;
+
+} 
 template <typename T> 
 void MyDList<T>::Remove(const T& value)
 {
