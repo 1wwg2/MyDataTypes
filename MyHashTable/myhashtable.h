@@ -5,7 +5,6 @@
 #include <memory>
 #include <stdexcept>
 
-
 template<typename Key, typename Value>
 class MyHashTable
 {
