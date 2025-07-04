@@ -57,7 +57,7 @@ public:
     {
        size_t Hash = HashFunction(key);
        
-       HashNode*& node = table[Hash]; //попробовать сделать без курент а просто тейбл хеш 
+       HashNode*& node = table[Hash]; 
        while(node != nullptr)
        {
            if(node->key == key)
@@ -67,10 +67,10 @@ public:
            }
            node = node->next.get();
        }
-       node = new HashNode{key, value, std::unique_ptr<HashNode>(nullptr)}; //разобраться с умными узателями, 
+       node = new HashNode{key, value, std::unique_ptr<HashNode>(nullptr)};  
     }
 
-    const Value& Search(const Key& key) const    //разобраться почему ссылка
+    const Value& Search(const Key& key) const    
     { 
         size_t Hash = HashFunction(key);
         HashNode* node = table[Hash];
