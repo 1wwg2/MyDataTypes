@@ -47,7 +47,7 @@ MyVector<T>::MyVector()
 
 template<typename T>
 MyVector<T>::MyVector(size_t _size) {
-    dynamic_vec_array = new T[_size]();  // Выделяем память
+    dynamic_vec_array = new T[_size]();  
     size = _size;
     capacity = _size;
 }

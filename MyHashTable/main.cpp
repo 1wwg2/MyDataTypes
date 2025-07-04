@@ -1,14 +1,28 @@
 
 #include "myhashtable.h"
 
-int main() {
-    MyHashTable<std::string, int> table(5);
+template<typename Key, typename Value>
+void ShowValue(const Key& key, const MyHashTable<Key, Value>& table) 
+{
+    try
+    {
+       const Value& value = table.Search(key);
+       std::cout << key << ": [" << value << "]" << std::endl;
+    }
+    catch(const std::out_of_range& exc)
+    {
+        std::cout << exc.what() << std::endl;
+    }
 
-    table.insert("apple", 10);
-    table.insert("canana", 20);
-    table.insert("cherry", 30);
-
-    table.print();
+} 
+int main()
+{
+    MyHashTable<int, double> table;
+    table.Insert(1, 42.1);
+    table.Insert(2, 41.1);
+    table.Insert(8, 43.1);
+    ShowValue(1, table);
+    ShowValue(4, table);
 
     return 0;
 }
