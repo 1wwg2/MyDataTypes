@@ -1,5 +1,5 @@
 
-#include "myhashtable.h"
+#include "../MyADT/myhashtable.h"
 
 template<typename Key, typename Value>
 void ShowValue(const Key& key, const MyHashTable<Key, Value>& table) 

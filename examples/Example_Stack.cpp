@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "MyStack.h" 
+#include "../MyADT/MyStack.h" 
 int main() {
     MyStack<int> stack;
 

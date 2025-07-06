@@ -1,5 +1,5 @@
 #include <iostream>
-#include "myqueue.h"
+#include "../MyADT/myqueue.h"
 
 int main()
 {

@@ -1,7 +1,7 @@
 #include <iostream>
-#include "mylist.h"
 #include <string>
    
+#include "../MyADT/mylist.h"
 
 int main()
 {

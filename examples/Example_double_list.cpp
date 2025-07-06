@@ -1,5 +1,5 @@
-#include "mydlist.h"
 
+#include "../MyADT/mydlist.h"
 int main()
 {
     MyDList<int> list;
