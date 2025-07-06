@@ -3,4 +3,3 @@
 *.gch
 *.user
 **/build/
-*.cpp
