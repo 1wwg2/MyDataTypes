@@ -1,7 +1,6 @@
-MyList/build/
-MyList/*.out
-MyList/*.gch
-MyList/*.user
+*.out
+*.gch
+*.user
 MyList/Makefile
 Makefile
 **/build/
