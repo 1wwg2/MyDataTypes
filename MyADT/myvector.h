@@ -2,8 +2,9 @@
 #define MY_VECTOR
 
 #include <iostream>
+#include <stdexcept>
 #include <utility>
-
+#include <exception>
 template<typename T>
 class MyVector
 {
@@ -255,6 +256,10 @@ size_t MyVector<T>::Size() const
 template<typename T>
 T& MyVector<T>::At(size_t index)
 {
+    if(index < 0 || index > (size - 1))
+    {
+        throw std::out_of_range("Index out of range");
+    } 
     return dynamic_vec_array[index];
 }
 

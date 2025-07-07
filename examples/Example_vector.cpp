@@ -9,10 +9,18 @@ int main()
     vec.PushFront(2);
     vec.PushFront(3);
     vec.PopFront();
-    vec.Clear(); 
+   // vec.Clear(); 
     for(int i = 0; i < vec.Size(); ++i)
     {
         std::cout << vec.At(i) << " ";
+    }
+    try
+    {
+        vec.At(-1);
+    }
+    catch(std::exception& exc)
+    {
+        std::cout << exc.what();
     }
     std::cout << std::endl;
 
