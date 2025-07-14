@@ -185,7 +185,7 @@ void MyList<T>::PopBack() {
         while (current->next->next != nullptr) {
             current = current->next; 
         }
-        delete current->next->next;
+        delete current->next;
         current->next->next = nullptr;
         current->next = nullptr;
     }
