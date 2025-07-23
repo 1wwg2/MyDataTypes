@@ -170,9 +170,9 @@ void MyList<T>::InsertNode(const T& value, int position) {
     }
 }
 
-
 template<typename T>
-typename MyList<T>::Node* MyList<T>::GetHead() const {
+typename MyList<T>::Node* MyList<T>::GetHead() const 
+{
    return Head;
 } 
 template<typename T>
